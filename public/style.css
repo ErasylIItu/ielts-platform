@@ -723,3 +723,56 @@ hr.divider {
   .timer-bar { padding: 10px 14px; }
   .timer-value { font-size: 18px; }
 }
+
+/* ─── Question type selector ────────────────────────────────────────────── */
+.qtype-select {
+  padding: 6px 10px;
+  border: 1.5px solid var(--gray200);
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  cursor: pointer;
+  outline: none;
+  flex: 1;
+  max-width: 260px;
+}
+
+.qtype-select:focus {
+  border-color: var(--blue);
+}
+
+.builder-question-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* ─── Matching dropdowns ────────────────────────────────────────────────── */
+.match-select {
+  padding: 6px 8px;
+  border: 1.5px solid var(--gray200);
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  cursor: pointer;
+  outline: none;
+  min-width: 60px;
+}
+
+.match-select:focus {
+  border-color: var(--blue);
+}
+
+/* ─── Inline text inputs (sentence/summary) ─────────────────────────────── */
+.sentence-input:focus,
+.summary-input:focus {
+  border-bottom-color: var(--navy) !important;
+  background: var(--sky) !important;
+}

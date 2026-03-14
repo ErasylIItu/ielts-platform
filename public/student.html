@@ -9,7 +9,6 @@
 <body>
 <div class="page-wrap">
 
-  <!-- Top bar -->
   <header class="topbar">
     <div class="topbar-logo">
       <span class="topbar-badge">IELTS</span>
@@ -20,7 +19,7 @@
 
   <main class="main-content" id="app">
 
-    <!-- ① Name Entry -->
+    <!-- Name Entry -->
     <div id="screen-name" class="card" style="max-width:420px;margin:80px auto;">
       <div class="card-title"><span class="icon">👤</span> Enter Your Name</div>
       <div class="form-group">
@@ -31,7 +30,7 @@
       <p class="text-muted mt-16 text-center">Enter your full name to join the waiting room.</p>
     </div>
 
-    <!-- ② Waiting Room -->
+    <!-- Waiting Room -->
     <div id="screen-waiting" class="card" style="display:none;max-width:420px;margin:80px auto;">
       <div class="waiting-room">
         <div class="spinner"></div>
@@ -41,10 +40,9 @@
       </div>
     </div>
 
-    <!-- ③ Test Screen -->
+    <!-- Test Screen -->
     <div id="screen-test" style="display:none;">
 
-      <!-- Timer bar -->
       <div class="timer-bar">
         <div>
           <div class="timer-label">Time Remaining</div>
@@ -54,16 +52,16 @@
           <div class="progress-bar" id="timer-progress" style="width:100%"></div>
         </div>
         <div style="text-align:right;">
-          <div class="timer-label" id="q-progress-label">Progress</div>
+          <div class="timer-label">Answered</div>
           <div style="font-size:18px;font-weight:700;color:#fff;" id="q-progress-count">0 / 0</div>
         </div>
       </div>
 
-      <!-- Audio banner (listening) -->
+      <!-- Audio banner -->
       <div id="audio-section" style="display:none;">
         <div class="audio-banner" id="audio-playing-banner">
           <h3>🎧 Listening Section</h3>
-          <p id="audio-status-text">Audio is playing — listen carefully before answering.</p>
+          <p id="audio-status-text">Audio is playing — listen carefully while answering.</p>
           <div class="audio-progress-wrap">
             <div class="audio-progress" id="audio-progress-bar"></div>
           </div>
@@ -79,7 +77,7 @@
         </div>
       </div>
 
-      <!-- Questions (hidden until audio ends or reading test) -->
+      <!-- Questions -->
       <div id="questions-section" style="display:none;">
         <div class="card">
           <div class="card-title"><span class="icon">❓</span> Questions</div>
@@ -92,9 +90,9 @@
       </div>
     </div>
 
-    <!-- ④ Results Screen -->
+    <!-- Results Screen -->
     <div id="screen-result" style="display:none;">
-      <div class="card" style="max-width:480px;margin:60px auto;text-align:center;">
+      <div class="card" style="max-width:520px;margin:40px auto;text-align:center;">
         <div style="font-size:52px;margin-bottom:16px;" id="result-emoji">🎉</div>
         <h2 style="font-size:26px;margin-bottom:8px;">Test Complete</h2>
         <p class="text-muted" style="margin-bottom:28px;">Here are your results</p>
@@ -104,6 +102,10 @@
         </div>
         <div style="font-size:36px;font-weight:700;color:var(--blue);margin-bottom:4px;" id="result-percent">0%</div>
         <div class="text-muted" id="result-message"></div>
+      </div>
+
+      <!-- Answer Review -->
+      <div id="result-review" class="card" style="max-width:720px;margin:0 auto 40px;display:none;">
       </div>
     </div>
 
