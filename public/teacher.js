@@ -67,16 +67,16 @@
         <div class="form-group">
           <label>Question Text</label>
           <input type="text" value="${esc(q.text)}" placeholder="Enter question…" 
-                 onchange="questions[${i}].text=this.value" />
+                 oninput="questions[${i}].text=this.value" />
         </div>
         <div style="margin-top:4px;">
           <label style="margin-bottom:8px;">Options &nbsp;<span style="color:var(--green);font-size:11px;">✔ mark correct</span></label>
           ${q.options.map((opt, j) => `
             <div class="option-row">
               <input type="radio" name="correct_${i}" value="${j}" ${q.correct === j ? 'checked' : ''}
-                     onchange="questions[${i}].correct=${j}" title="Mark as correct" />
+                     oninput="questions[${i}].correct=${j}" title="Mark as correct" />
               <input type="text" value="${esc(opt)}" placeholder="Option ${String.fromCharCode(65+j)}"
-                     onchange="questions[${i}].options[${j}]=this.value" />
+                     oninput="questions[${i}].options[${j}]=this.value" />
               <span class="correct-radio-label" style="${q.correct===j?'':'visibility:hidden'}">✔</span>
             </div>
           `).join('')}
