@@ -96,8 +96,15 @@
     return String(str || '').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   }
 
-  // ── Save test
+// ── Save test
   window.saveTest = async function () {
+    // Sync from DOM before validation
+    document.querySelectorAll('.builder-question').forEach((block, i) => {
+      const inputs = block.querySelectorAll('input[type="text"]');
+      questions[i].text = inputs[0].value;
+      questions[i].options = [inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value];
+    });
+
     // Validation
     if (currentType === 'listening' && !uploadedAudioUrl) {
       setStatus('save-status', 'error', 'Please upload an audio file first.');
@@ -125,7 +132,7 @@
       questions,
       duration
     };
-
+    
     try {
       const res  = await fetch('/api/save-test', {
         method: 'POST',
