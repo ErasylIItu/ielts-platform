@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IELTS Preparation — Student</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-logo">
+      <span class="topbar-badge">IELTS</span>
+      <span class="topbar-title">Preparation Platform</span>
+    </div>
+    <span class="topbar-role">Student</span>
+  </header>
+
+  <main class="main-content" id="app">
+
+    <!-- ① Name Entry -->
+    <div id="screen-name" class="card" style="max-width:420px;margin:80px auto;">
+      <div class="card-title"><span class="icon">👤</span> Enter Your Name</div>
+      <div class="form-group">
+        <label for="student-name">Full Name</label>
+        <input type="text" id="student-name" placeholder="e.g. Aisha Karimova" autocomplete="off" maxlength="60" />
+      </div>
+      <button class="btn btn-primary btn-lg w-full" id="btn-join">Join Test Session</button>
+      <p class="text-muted mt-16 text-center">Enter your full name to join the waiting room.</p>
+    </div>
+
+    <!-- ② Waiting Room -->
+    <div id="screen-waiting" class="card" style="display:none;max-width:420px;margin:80px auto;">
+      <div class="waiting-room">
+        <div class="spinner"></div>
+        <h2>Waiting Room</h2>
+        <p>Waiting for the teacher to start the test.</p>
+        <p class="text-muted mt-16" id="waiting-name-display"></p>
+      </div>
+    </div>
+
+    <!-- ③ Test Screen -->
+    <div id="screen-test" style="display:none;">
+
+      <!-- Timer bar -->
+      <div class="timer-bar">
+        <div>
+          <div class="timer-label">Time Remaining</div>
+          <div class="timer-value" id="timer-display">00:00</div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="timer-progress" style="width:100%"></div>
+        </div>
+        <div style="text-align:right;">
+          <div class="timer-label" id="q-progress-label">Progress</div>
+          <div style="font-size:18px;font-weight:700;color:#fff;" id="q-progress-count">0 / 0</div>
+        </div>
+      </div>
+
+      <!-- Audio banner (listening) -->
+      <div id="audio-section" style="display:none;">
+        <div class="audio-banner" id="audio-playing-banner">
+          <h3>🎧 Listening Section</h3>
+          <p id="audio-status-text">Audio is playing — listen carefully before answering.</p>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress" id="audio-progress-bar"></div>
+          </div>
+        </div>
+        <audio id="audio-player" style="display:none;"></audio>
+      </div>
+
+      <!-- Reading passage -->
+      <div id="reading-section" style="display:none;">
+        <div class="card">
+          <div class="card-title"><span class="icon">📖</span> Reading Passage</div>
+          <div class="reading-passage" id="reading-text"></div>
+        </div>
+      </div>
+
+      <!-- Questions (hidden until audio ends or reading test) -->
+      <div id="questions-section" style="display:none;">
+        <div class="card">
+          <div class="card-title"><span class="icon">❓</span> Questions</div>
+          <div id="questions-list"></div>
+          <hr class="divider" />
+          <div class="flex-row flex-end">
+            <button class="btn btn-success btn-lg" id="btn-submit">Submit Answers</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Results Screen -->
+    <div id="screen-result" style="display:none;">
+      <div class="card" style="max-width:480px;margin:60px auto;text-align:center;">
+        <div style="font-size:52px;margin-bottom:16px;" id="result-emoji">🎉</div>
+        <h2 style="font-size:26px;margin-bottom:8px;">Test Complete</h2>
+        <p class="text-muted" style="margin-bottom:28px;">Here are your results</p>
+        <div style="background:var(--sky);border-radius:12px;padding:28px;margin-bottom:20px;">
+          <div style="font-size:48px;font-weight:700;color:var(--navy);font-family:'Merriweather',serif;" id="result-score">0/0</div>
+          <div style="font-size:14px;color:var(--gray600);margin-top:4px;">Correct Answers</div>
+        </div>
+        <div style="font-size:36px;font-weight:700;color:var(--blue);margin-bottom:4px;" id="result-percent">0%</div>
+        <div class="text-muted" id="result-message"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/student.js"></script>
+</body>
+</html>

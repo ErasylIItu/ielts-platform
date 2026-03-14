@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IELTS Preparation — Teacher</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-logo">
+      <span class="topbar-badge">IELTS</span>
+      <span class="topbar-title">Preparation Platform</span>
+    </div>
+    <span class="topbar-role">Teacher Dashboard</span>
+  </header>
+
+  <main class="main-content wide" id="app">
+
+    <!-- ① Test Builder (idle/waiting/finished states) -->
+    <div id="panel-builder">
+
+      <h2 style="margin-bottom:6px;">Create a Test</h2>
+      <p class="text-muted" style="margin-bottom:24px;">Build your test below, then start it when students are ready.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
+
+        <!-- Left column: builder -->
+        <div>
+
+          <!-- Test type -->
+          <div class="card">
+            <div class="card-title"><span class="icon">📋</span> Test Type</div>
+            <div class="tab-row">
+              <button class="tab-btn active" id="tab-listening" onclick="setType('listening')">🎧 Listening</button>
+              <button class="tab-btn"        id="tab-reading"   onclick="setType('reading')">📖 Reading</button>
+            </div>
+
+            <!-- Listening: audio upload -->
+            <div id="section-listening">
+              <div class="form-group">
+                <label>Upload Audio File</label>
+                <input type="file" id="audio-file-input" accept="audio/*" />
+              </div>
+              <div id="audio-upload-status" style="display:none;" class="alert alert-success">
+                ✅ Audio uploaded successfully
+              </div>
+              <div id="audio-name-display" class="text-muted" style="margin-top:6px;"></div>
+            </div>
+
+            <!-- Reading: text input -->
+            <div id="section-reading" style="display:none;">
+              <div class="form-group">
+                <label>Reading Passage</label>
+                <textarea id="reading-text-input" rows="8" placeholder="Paste or type the reading passage here..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:4px;">
+              <label>Test Duration (minutes)</label>
+              <input type="number" id="duration-input" value="60" min="1" max="180" style="max-width:140px;" />
+            </div>
+          </div>
+
+          <!-- Questions builder -->
+          <div class="card">
+            <div class="section-header">
+              <div class="card-title" style="margin:0;padding:0;border:none;"><span class="icon">❓</span> Questions</div>
+              <button class="btn btn-outline btn-sm" onclick="addQuestion()">+ Add Question</button>
+            </div>
+            <div id="questions-builder">
+              <!-- dynamic -->
+            </div>
+            <div id="no-questions-msg" class="empty-state">
+              No questions yet. Click "+ Add Question" to begin.
+            </div>
+          </div>
+
+          <!-- Save & Actions -->
+          <div class="flex-row flex-end">
+            <button class="btn btn-primary btn-lg" id="btn-save-test" onclick="saveTest()">Save Test</button>
+          </div>
+
+          <div id="save-status" style="margin-top:14px;"></div>
+
+        </div>
+
+        <!-- Right column: students + controls -->
+        <div>
+
+          <!-- Status card -->
+          <div class="card" id="status-card">
+            <div class="card-title"><span class="icon">📡</span> Session Status</div>
+            <div id="status-badge" class="alert alert-warn">⏳ No test saved yet</div>
+          </div>
+
+          <!-- Students waiting -->
+          <div class="card">
+            <div class="section-header" style="margin-bottom:12px;">
+              <div class="section-title">Students in Waiting Room</div>
+              <span class="badge-count" id="student-count">0</span>
+            </div>
+            <div class="student-list" id="student-list">
+              <div class="empty-state">No students connected yet.</div>
+            </div>
+          </div>
+
+          <!-- Start Test -->
+          <div class="card">
+            <button class="btn btn-success btn-lg w-full" id="btn-start" onclick="startTest()" disabled>
+              ▶ Start Test
+            </button>
+            <p class="text-muted text-center mt-16" id="start-hint">Save the test first, then students can join.</p>
+          </div>
+
+          <!-- Reset -->
+          <div class="card">
+            <button class="btn btn-danger btn-sm w-full" id="btn-reset" onclick="resetTest()">
+              🔄 Reset / New Test
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Results panel -->
+    <div id="panel-results" style="display:none;margin-top:20px;">
+      <div class="card">
+        <div class="section-header">
+          <div class="card-title" style="margin:0;padding:0;border:none;"><span class="icon">📊</span> Test Results</div>
+          <button class="btn btn-outline btn-sm" onclick="resetTest()">New Test</button>
+        </div>
+        <div id="results-summary" class="alert alert-info" style="margin-bottom:16px;"></div>
+        <div style="overflow-x:auto;">
+          <table class="results-table" id="results-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student Name</th>
+                <th>Correct</th>
+                <th>Total</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="results-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/teacher.js"></script>
+</body>
+</html>

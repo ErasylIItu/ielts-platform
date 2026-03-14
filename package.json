@@ -1,0 +1,15 @@
+{
+  "name": "ielts-platform",
+  "version": "1.0.0",
+  "description": "Simple IELTS test platform for teachers and students",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
